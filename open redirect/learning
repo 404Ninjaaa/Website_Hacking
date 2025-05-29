@@ -5,6 +5,158 @@ Tittle ==> Day-52 Live Bug Bounty - Hunting For Open Redirect - Bug Bounty Free 
 Video Link
 https://www.youtube.com/live/Y4qw3sVbPRA?si=NrsgE-DyWoa8A8V7
 
+Websites
+https://hacktricks.boitatech.com.br/pentesting-web/open-redirect
+https://github.com/EdOverflow/bugbounty-cheatsheet/blob/master/cheatsheets/open-redirect.md
+
+
+
+
+
+Open Redirect
+
+Youtube video
+Unvalidated redirects and forward are possible when a web application accepts untrusted input that could cause the web application to redirect the request to a url contained within untrusted input. By modifying untrusted url input a malicious site, an attacker may successfully, launch a phishing scam and steal user credentials.
+
+Where ==> login page, check out page, register page, create page, password reset page, any page offering some kind of redirection,
+
+
+Fix
+Allow trusted domains
+Use relative path
+
+Strops(‘/dashboard’, ‘/’) == 0 (valid)
+Strops(‘/http://evil.com’, ‘/’) !== 0 (invalid)
+
+￼
+
+
+We can do html hypertext injection with open redirection
+<a href ="https://www.w3schools.com”>Visit Website</a> we can also use it as a payload
+
+
+
+Tools
+Waybackurl
+openredirectx
+
+
+Chatgpt prompt ==> I need a one liner command which uses waysbackurls tools to fetch all the urls of a target and filter it with grep for possible redirect parameters, including all possible parameters
+
+waybackurls example.com | grep -Ei '([?&](redirect|url|next|return|returnTo|dest|destination|continue|back|goto|ref|redirect_uri|redirect_url|redirectTo|redir|rurl|target|out|view)=)'
+
+
+
+Chatgpt
+Improper validation of user-supplied input used in URL redirection.
+
+When a web application allows users to specify a destination URL (e.g., via query parameters) and redirects them there without checking or restricting that input, attackers can exploit it.
+
+🧪 Example:
+https://example.com/redirect?url=https://evil.com
+
+Why It’s Dangerous:
+* Can be used in phishing attacks to increase trust in malicious links.
+* Can help in bypassing security filters.
+* Sometimes even leads to SSRF or token leakage.
+
+
+
+❌ Bad Code (Vulnerable to Open Redirect)
+
+# Flask example (Python)
+from flask import Flask, request, redirect
+
+app = Flask(__name__)
+
+@app.route('/redirect')
+def unsafe_redirect():
+    url = request.args.get('url')  # e.g., ?url=https://evil.com
+    return redirect(url)  # ⚠️ No validation!
+
+What’s wrong?
+* Takes the url parameter from user input.
+* Redirects to any URL — even malicious ones.
+
+
+✅ Good Code (Secure — With Validation)
+✅ Option 1: Allow only internal redirects
+
+from flask import Flask, request, redirect, abort, url_for
+app = Flask(__name__)
+
+@app.route('/redirect')
+def safe_redirect():
+    path = request.args.get('url')
+
+    # Only allow relative paths
+    if path and path.startswith('/'):
+        return redirect(path)
+    else:
+        abort(400)  # Bad Request
+
+✅ Option 2: Use a whitelist of safe domains
+SAFE_DOMAINS = ['yourbank.com', 'yourbank.com/support']
+
+@app.route('/redirect')
+def safe_redirect_with_whitelist():
+    url = request.args.get('url')
+    
+    if url:
+        from urllib.parse import urlparse
+        domain = urlparse(url).netloc
+
+        if domain in SAFE_DOMAINS:
+            return redirect(url)
+    
+    abort(400)
+
+
+
+list of common redirect parameters:
+redirect  
+url  
+next  
+return  
+returnTo  
+dest  
+destination  
+continue  
+back  
+goto  
+ref  
+redirect_uri  
+redirect_url  
+redirectTo  
+跳转 (Chinese for redirect)  
+redir  
+rurl  
+target  
+out  
+view
+u
+r
+view
+return_path
+go
+rurl
+loginto
+image_url
+continue
+link
+lnk
+
+
+
+
+
+
+
 
 
 Overall
+waybackurls example.com | grep -Ei '([?&](redirect|url|next|return|returnTo|dest|destination|continue|back|goto|ref|redirect_uri|redirect_url|redirectTo|redir|rurl|target|out|view)=)'
+
+cat sites.txt | openredirex
+
+

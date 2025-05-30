@@ -13,7 +13,7 @@ https://github.com/EdOverflow/bugbounty-cheatsheet/blob/master/cheatsheets/open-
 
 
 
-Open Redirect
+Open Redirect (status of 3XX)
 
 Youtube video
 Unvalidated redirects and forward are possible when a web application accepts untrusted input that could cause the web application to redirect the request to a url contained within untrusted input. By modifying untrusted url input a malicious site, an attacker may successfully, launch a phishing scam and steal user credentials.
@@ -40,11 +40,25 @@ Tools
 Waybackurl
 openredirectx
 
+cat targets.txt| openredirex
 
 Chatgpt prompt ==> I need a one liner command which uses waysbackurls tools to fetch all the urls of a target and filter it with grep for possible redirect parameters, including all possible parameters
 
 waybackurls example.com | grep -Ei '([?&](redirect|url|next|return|returnTo|dest|destination|continue|back|goto|ref|redirect_uri|redirect_url|redirectTo|redir|rurl|target|out|view)=)'
 
+
+
+Payloads
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Open%20Redirect
+
+Google dorks (google dorks for bug bounty targets)
+https://github.com/TakSec/google-dorks-bug-bounty
+
+https://github.com/sushiwushi/bug-bounty-dorks/blob/master/dorks.txt
+
+
+GPT Dork ( give me google dork that takes a target site and search for all possible open redirection parameters inurl)
+site:example.com inurl:redir | inurl:url | inurl:return | inurl=next | inurl=redirect | inurl=out | inurl=continue | inurl=dest | inurl=destination | inurl=go | inurl=page
 
 
 Chatgpt

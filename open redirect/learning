@@ -1,3 +1,5 @@
+======================================================================================================================================
+
 This is all about the open redirection
 
 From This youtube video
@@ -14,6 +16,8 @@ https://github.com/EdOverflow/bugbounty-cheatsheet/blob/master/cheatsheets/open-
 
 
 Open Redirect (status of 3XX)
+
+======================================================================================================================================
 
 Youtube video
 Unvalidated redirects and forward are possible when a web application accepts untrusted input that could cause the web application to redirect the request to a url contained within untrusted input. By modifying untrusted url input a malicious site, an attacker may successfully, launch a phishing scam and steal user credentials.
@@ -39,6 +43,10 @@ We can do html hypertext injection with open redirection
 Tools
 Waybackurl
 openredirectx
+https://web.archive.org/
+Arjun
+Alterx
+dnsvalidator
 
 cat targets.txt| openredirex
 
@@ -60,6 +68,7 @@ https://github.com/sushiwushi/bug-bounty-dorks/blob/master/dorks.txt
 GPT Dork ( give me google dork that takes a target site and search for all possible open redirection parameters inurl)
 site:example.com inurl:redir | inurl:url | inurl:return | inurl=next | inurl=redirect | inurl=out | inurl=continue | inurl=dest | inurl=destination | inurl=go | inurl=page
 
+======================================================================================================================================
 
 Chatgpt
 Improper validation of user-supplied input used in URL redirection.
@@ -162,15 +171,73 @@ lnk
 
 
 
+Two types of open redirect
+1. open redirect through GET based parameter
+2. open redirect through path fragment
+Example of path redirect through path fragment
+https://target.com/bing.com
 
 
 
 
-
+======================================================================================================================================
 
 Overall
 waybackurls example.com | grep -Ei '([?&](redirect|url|next|return|returnTo|dest|destination|continue|back|goto|ref|redirect_uri|redirect_url|redirectTo|redir|rurl|target|out|view)=)'
 
 cat sites.txt | openredirex
+
+
+Live examples
+https://youtu.be/qEbivKp5p3s?si=nhFweV9ijiiDLYxh
+https://youtu.be/vMUBN9-w9gI?si=ny5iJZwpYXCmAwN7
+
+
+
+https://youtu.be/RNCy2X10bqM?si=GAqPyPJ-UyydWn68
+
+Oralyzer Tool
+paramspider -d testphp.vulnweb.com
+python3 oralyzer.py -u http://testphp.vulnweb.com/redir.php?r=FUZZ&user=xyz
+
+
+
+
+
+======================================================================================================================================
+PortSwigger Labs
+
+DOM-based open redirection
+https://portswigger.net/web-security/dom-based/open-redirection
+
+<a href='#' onclick='returnUrl = /url=(https?:\/\/.+)/.exec(location); location.href = returnUrl ? returnUrl[1] : "/"'>Back to Blog</a>
+Checks if there is url and https or not 
+
+🧠 JavaScript Part in Detail:
+
+returnUrl = /url=(https?:\/\/.+)/.exec(location);
+What it does:
+* /url=(https?:\/\/.+)/ is a regular expression (RegEx).
+    * It looks for a string like: url=https://example.com
+* .exec(location) runs the RegEx on the location object.
+    * location usually means window.location, which refers to the current page's URL (e.g., location.href).
+* However, here they’ve forgotten to use .href, so it will be undefined or object-like.
+* Correct version should be: js CopyEdit   /url=(https?:\/\/.+)/.exec(location.href)
+*   
+💡 So, as written, this code may not work correctly unless the browser treats location as location.href implicitly.
+
+Then:
+location.href = returnUrl ? returnUrl[1] : "/";
+* This line redirects the browser:
+    * If returnUrl exists (i.e., the RegEx matched something),
+        * returnUrl[1] contains the captured URL (like https://example.com).
+        * Redirect to that URL.
+    * Otherwise,
+        * Redirect to the root / (home page or main blog page).
+
+
+
+
+======================================================================================================================================
 
 

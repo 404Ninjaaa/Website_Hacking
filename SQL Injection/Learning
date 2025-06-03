@@ -1,0 +1,52 @@
+This is all about the sql injection
+======================================================================================================================================
+From not copy
+// Sql injection is a code injection technique that might destroy your database
+// Sql injection is one of the most common web hacking techniques
+// Sql injection is the placement of malicious code in SQL statements, via web page input
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Types of SQLI
+// In-band SQLI
+// Inferential SQLI
+// Out-of-band SQLI
+--------------------------------------------------------------------------------------------------------------------------------------
+
++++ In-band SQLI
++ Error-based SQLI
+Error based SQLI is an in-band SQLI injection technique that relies on error messages thrown by the database server to obtain information about the structure of the database
+'
+''
+\
+OR 1 = 0
+
++ Union-based SQLI
+Union-based SQLI is an in-band SQL injection technique that leverages the unnion sql operator to combine the results of two or more SELECT statements.
+'UNION SELECT 1,2,3--+
+--------------------------------------------------------------------------------------------------------------------------------------
+
++++ Inferential SQLI
++ Blind SQLI
+It is just as dangerous as any other form of SQL injection. In an Blind SQLI attack, no data is actually transferred via the web application and the attacker would not be able to see the result of an attack.
+
+There are two types of Blind SQL injection and they are:
+Blind-boolean-based SQLI
+  AND 1=1
+  AND a=a
+  'AND 1=1
+
+Blind-time based SQLI
+  sleep(5)#
+  1 or sleep(5)#
+  ' or sleep(5)#
+  ' or sleep(5)#
+--------------------------------------------------------------------------------------------------------------------------------------
+
++++ Out-of-band SQLI
+Out-of-band SQL injection is not very common, mostly because it depends on features being enabled on the database server being used by the web application. 
+Out-of-band SQL injection occurs when attacker is unable to use the same channel to launch the attack and gather results.
+
+======================================================================================================================================
+
+
+

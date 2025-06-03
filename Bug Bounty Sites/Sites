@@ -1,3 +1,10 @@
 Places to find targets for bug bounty hunting
 
 Intigriti
+yeswehack ===> https://yeswehack.com/programs
+openbounty ===> http://openbugbounty.org/
+
+
+Google Dorks
+site:example.com inurl:security OR inurl:bug-bounty
+

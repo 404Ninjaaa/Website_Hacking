@@ -8,6 +8,9 @@ openbounty ===> http://openbugbounty.org/
 Google Dorks
 site:example.com inurl:security OR inurl:bug-bounty
 
+Lab Setup
+https://github.com/NoobGajen/pentestlab_for_linux
+
 
 
                                                                             Bug Bounty
